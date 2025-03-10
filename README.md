@@ -1,5 +1,7 @@
 # **The Vernito Journey**
 
+![Hero Image](hero.webp)
+
 ## In 2015, a vision began…
 
 **Vernetic** was born—a robust, fully featured CSS framework built to empower developers with precision and flexibility. For nearly a decade, it evolved, grew, and tackled complex design challenges.
