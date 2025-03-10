@@ -1,0 +1,121 @@
+/******************************************************************************
+ * NAVBAR STYLING
+ *
+ * Purpose:
+ * - Provides a fixed, responsive navigation bar.
+ * - Aligns content to the left and right sections.
+ * - Dynamically adjusts logo size based on navbar height and padding.
+ *****************************************************************************/
+
+:root {
+    --navbar-height: 4rem; /* Defines the overall height of the navbar */
+}
+
+.navbar {
+    --navbar-logo-padding: 1.375rem; /* Horizontal padding around the logo */
+    --navbar-logo-opacity: .9; /* Horizontal padding around the logo */
+    --animation-start: 5rem;
+    --animation-length: 20px;
+
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 1000; /* Places navbar above other elements */
+    display: flex;
+    justify-content: space-between; /* Pushes content to edges (left and right sections) */
+    height: var(--navbar-height); /* Ensures consistent navbar height */
+    background: oklch(0 0 0 / 0); /* Navbar background color */
+    animation: stickyNav linear forwards;
+
+    @supports (animation-timeline: view()) {
+        animation-timeline: view();
+        animation-range-start: calc(100vh + var(--animation-start));
+        animation-range-end: calc(100vh + var(--animation-start) + var(--animation-length));
+    }
+
+    @keyframes stickyNav {
+        100% {
+          background: var(--color-900);
+        }
+    }
+
+    &__logo {
+        &-img {
+            height: calc(var(--navbar-height) - 1.33 * var(--navbar-logo-padding)); /* Dynamically scales logo size */
+            width: auto; /* Maintains logo's aspect ratio */
+            opacity: var(--navbar-logo-opacity);
+        }
+
+        &:hover {
+            background: var(--accent-600);
+            outline: .5rem solid var(--accent-600);
+        }
+    }
+
+    &__menu {
+        font-size: var(--fs-300);
+        line-height: 1;
+        padding: 0 1rem;
+
+        &-link {
+            color: var(--color-100);
+            transition: none;
+            display: flex;
+            align-items: center;
+            padding: 0 .65rem;
+            font-weight: 500;
+
+            &:hover {
+                background: var(--accent-600);
+                color: #fff;
+                text-decoration: none;
+            }
+            &:visited {
+                color: var(--color-100);
+            }
+        }
+    }
+}
+
+/******************************************************************************
+ * SIDEBAR
+ *****************************************************************************/
+
+.nav-sidebar {
+    position: fixed;
+    z-index: 990;
+    top: var(--navbar-height);
+    height: calc(100vh - var(--navbar-height));
+    width: fit-content;
+    min-width: 20vw;
+    max-width: 100%;
+    background: var(--color-900);
+    padding: 1rem 2rem;
+    display: none;
+
+    &.show {
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media(max-width: 750px) {
+        width: 100%;
+    }
+
+}
+
+/******************************************************************************
+ * Overlay
+ *****************************************************************************/
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .65);
+    backdrop-filter: blur(5px);
+    z-index: 900;
+    display: none;
+
+    &.show {
+        display: block;
+    }
+}

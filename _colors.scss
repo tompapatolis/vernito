@@ -1,0 +1,79 @@
+@use 'sass:math';
+
+:root {
+    /* Color Scheme */
+    color-scheme: dark;
+
+    /* Neutral Colors */
+
+    // Base Color: oklch(52.97% 0.0264 250.09)
+    $base_l: 52.97%; // Lightness 0-100%
+    $base_c: 0.0164; // Chroma 0-0.4
+    $base_h: 250.09; // Hue 0-360 (Color Wheel Degrees)
+    $adjust_c: 0.05; // Adjustment base for chroma
+    $acccent_boost: 0.1;
+
+    --color-50:   oklch(100% #{$base_c + (sin(1.00 * math.$pi) * $adjust_c)} #{$base_h});
+    --color-100: oklch(91.5% #{$base_c + (sin(0.90 * math.$pi) * $adjust_c)} #{$base_h});
+    --color-200:   oklch(83% #{$base_c + (sin(0.81 * math.$pi) * $adjust_c)} #{$base_h});
+    --color-300: oklch(74.5% #{$base_c + (sin(0.72 * math.$pi) * $adjust_c)} #{$base_h});
+    --color-400:   oklch(66% #{$base_c + (sin(0.63 * math.$pi) * $adjust_c)} #{$base_h});
+    --color-500: oklch(57.5% #{$base_c + (sin(0.54 * math.$pi) * $adjust_c)} #{$base_h});
+    --color-600:   oklch(49% #{$base_c + (sin(0.45 * math.$pi) * $adjust_c)} #{$base_h});
+    --color-700: oklch(40.5% #{$base_c + (sin(0.36 * math.$pi) * $adjust_c)} #{$base_h});
+    --color-800:   oklch(32% #{$base_c + (sin(0.27 * math.$pi) * $adjust_c)} #{$base_h});
+    --color-900: oklch(23.5% #{$base_c + (sin(0.18 * math.$pi) * $adjust_c)} #{$base_h});
+    --color-1000:  oklch(15% #{$base_c + (sin(0.09 * math.$pi) * $adjust_c)} #{$base_h});
+
+    /* Accent Colors */
+    --accent-50:   oklch(100% #{$base_c + (sin(1.00 * math.$pi) * $adjust_c + $acccent_boost)} #{$base_h});
+    --accent-100: oklch(91.5% #{$base_c + (sin(0.90 * math.$pi) * $adjust_c + $acccent_boost)} #{$base_h});
+    --accent-200:   oklch(83% #{$base_c + (sin(0.81 * math.$pi) * $adjust_c + $acccent_boost)} #{$base_h});
+    --accent-300: oklch(74.5% #{$base_c + (sin(0.72 * math.$pi) * $adjust_c + $acccent_boost)} #{$base_h});
+    --accent-400:   oklch(66% #{$base_c + (sin(0.63 * math.$pi) * $adjust_c + $acccent_boost)} #{$base_h});
+    --accent-500: oklch(57.5% #{$base_c + (sin(0.54 * math.$pi) * $adjust_c + $acccent_boost)} #{$base_h});
+    --accent-600:   oklch(49% #{$base_c + (sin(0.45 * math.$pi) * $adjust_c + $acccent_boost)} #{$base_h});
+    --accent-700: oklch(40.5% #{$base_c + (sin(0.36 * math.$pi) * $adjust_c + $acccent_boost)} #{$base_h});
+    --accent-800:   oklch(32% #{$base_c + (sin(0.27 * math.$pi) * $adjust_c + $acccent_boost)} #{$base_h});
+    --accent-900: oklch(23.5% #{$base_c + (sin(0.18 * math.$pi) * $adjust_c + $acccent_boost)} #{$base_h});
+    --accent-1000:  oklch(15% #{$base_c + (sin(0.09 * math.$pi) * $adjust_c + $acccent_boost)} #{$base_h});
+
+    /* Status/Utility Colors */
+    --color-red: #e53e3e;     /* Red background (Error/Warning) */
+    --color-green: #38a169;   /* Green background (Success) */
+    --color-yellow: #ecc94b;  /* Yellow background (Warning) */
+    --color-magenta: #d53f8c; /* Magenta background */
+    --color-crimson: #dc143c; /* Crimson background */
+    --color-purple: #805ad5;  /* Purple background */
+    --color-orange: #ed8936;  /* Orange background */
+
+}
+
+.light-mode {
+    /* Color Scheme */
+    color-scheme: light;
+}
+
+/******************************************************************************
+ * COLOR CLASSES
+ *****************************************************************************/
+
+$shades: (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000);
+
+@each $shade in $shades {
+    .color-#{$shade} {
+        color: var(--color-#{$shade});
+    }
+
+    .bg-#{$shade} {
+        background-color: var(--color-#{$shade});
+    }
+
+    .accent-#{$shade} {
+        color: var(--accent-#{$shade});
+    }
+
+    .bg-accent-#{$shade} {
+        background-color: var(--accent-#{$shade});
+    }
+}

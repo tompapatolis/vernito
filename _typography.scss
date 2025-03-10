@@ -1,0 +1,456 @@
+/******************************************************************************
+ * FONT SIZES
+ *****************************************************************************/
+
+/**
+ * Font Sizes for Default Screens
+ *
+ * Provides a range of font sizes from extra small to extra large for use on
+ * desktop and tablet screens.
+ */
+ :root {
+    --fs-50: 0.625rem;  /* Extra small (11.25px) */
+    --fs-100: 0.75rem;  /* Small (13.5px) */
+    --fs-200: 0.875rem; /* Slightly smaller than base (15.75px) */
+    --fs-300: 1rem;     /* Base size (18px) */
+    --fs-400: 1.125rem; /* Slightly larger (20.25px) */
+    --fs-500: 1.25rem;  /* Medium (22.5px) */
+    --fs-600: 1.5rem;   /* Large (27px) */
+    --fs-700: 1.75rem;  /* Extra Large (31.5px) */
+    --fs-800: 2rem;     /* 2x base size (36px) */
+    --fs-900: 2.5rem;   /* Very large (45px) */
+    --fs-1000: 3rem;    /* Extra large (54px) */
+}
+
+/**
+ * Font Sizes for Small Screens
+ *
+ * Defines slightly smaller font sizes optimized for screens with a
+ * max-width of 750px. These sizes are proportionally smaller to
+ * maintain readability on smaller devices.
+ */
+@media (max-width: 750px) {
+    :root {
+        --fs-50: 0.5rem;    /* Extra small (9px) */
+        --fs-100: 0.625rem; /* Small (11.25px) */
+        --fs-200: 0.75rem;  /* Slightly smaller than base (13.5px) */
+        --fs-300: 0.875rem; /* Base size (15.75px) */
+        --fs-400: 1rem;     /* Slightly larger (18px) */
+        --fs-500: 1.125rem; /* Medium (20.25px) */
+        --fs-600: 1.25rem;  /* Large (22.5px) */
+        --fs-700: 1.5rem;   /* Extra Large (27px) */
+        --fs-800: 1.75rem;  /* 2x base size (31.5px) */
+        --fs-900: 2rem;     /* Very large (36px) */
+        --fs-1000: 2.5rem;  /* Extra large (45px) */
+    }
+}
+
+/******************************************************************************
+ * FONT SIZE UTILITIES
+ *****************************************************************************/
+
+/**
+ * Font Size Utility Classes
+ *
+ * Dynamically applies the defined font sizes to elements via utility classes.
+ */
+$font_sizes: (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000);
+
+@each $key in $font_sizes {
+    .fs-#{$key},
+    .fs-#{$key} p {
+        font-size: var(--fs-#{$key}) !important;
+        line-height: 2.7ex;
+    }
+}
+
+/******************************************************************************
+ * TYPOGRAPHY STYLES
+ *****************************************************************************/
+
+/**
+ * Heading Styles
+ *
+ * Applies consistent typography to headings (h1 to h6) and their class equivalents,
+ * ensuring proper hierarchy with font sizes and weights.
+ */
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+    line-height: 1.25;
+    margin-bottom: 0.75ex;
+}
+
+h1, .h1 {
+    font-size: var(--fs-800); /* Extra large (32px) */
+    font-weight: 700; /* Bold for strong emphasis */
+}
+
+h2, .h2 {
+    font-size: var(--fs-700); /* Extra large (28px) */
+    font-weight: 600; /* Slightly less bold */
+}
+
+h3, .h3 {
+    font-size: var(--fs-600); /* Large (24px) */
+    font-weight: 500; /* Medium weight */
+}
+
+h4, .h4 {
+    font-size: var(--fs-500); /* Medium (20px) */
+    font-weight: 500; /* Consistent medium weight */
+}
+
+h5, .h5 {
+    font-size: var(--fs-400); /* Slightly larger than base (18px) */
+    font-weight: 400; /* Normal weight */
+}
+
+h6, .h6 {
+    font-size: var(--fs-300); /* Base size (16px) */
+    font-weight: 400; /* Normal weight for subtle emphasis */
+}
+
+/**
+ * Paragraph Styles
+ *
+ * Provides styling for paragraphs, including font size, spacing, and inline link behavior.
+ */
+
+p {
+    font-size: var(--fs-300); /* Base font size (16px) */
+    line-height: 1.7; /* Comfortable line height for better readability */
+    margin-bottom: 1.5em; /* Space between paragraphs */
+
+    a {
+        color: var(--accent-300); /* Primary accent color for links */
+        text-decoration: underline;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: var(--accent-200); /* Brighter blue on hover */
+            text-decoration: none;
+        }
+    }
+
+    &.mb-0 {
+        margin-bottom: 0 !important;
+    }
+}
+
+/**
+ * Horizontal Rules
+ */
+
+hr {
+    margin: 3rem 0;
+    background-color: var(--color-600);
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-900); // Base background color
+    margin: 2rem 0;
+    color: var(--color-100);
+    border-radius: .5rem;
+    overflow: hidden;
+    font-size: var(--fs-200);
+
+    // Table Headers
+    thead {
+        background-color: var(--color-900); // Slightly darker background for the header
+        font-weight: bold;
+        font-size: var(--fs-300);
+        color: var(--color-200);
+
+        th {
+            padding: 1rem; // Space around header text
+            text-align: left; // Align header text to the left
+            border-bottom: 1px solid var(--color-500); // Separator line below the header
+        }
+    }
+
+    // Table Body
+    tbody {
+        tr {
+            &:not(:last-child) {
+                border-bottom: 1px solid var(--color-500); // Separator line between rows
+            }
+
+            &:nth-child(odd) {
+                background-color: var(--color-700); // Alternate row color
+            }
+
+            &:hover {
+                background-color: var(--color-500); // Hover effect for rows
+                color: var(--color-50);
+            }
+
+            td {
+                padding: .5rem 1rem; // Space around cell text
+                text-align: left; // Align cell text to the left
+            }
+        }
+    }
+}
+
+/******************************************************************************
+ * BLOCKQUOTES
+ *****************************************************************************/
+
+/**
+ * Blockquote Styling
+ *
+ * Styles for quoted text, emphasizing it with colors, spacing, and decorative elements.
+ */
+blockquote {
+    position: relative; /* For positioning the quote icon */
+    font-size: var(--fs-400); /* Slightly larger for quotes */
+    color: var(--color-200); /* Light gray for differentiation */
+    border-left: 4px solid var(--accent-500); /* Accent color for the border */
+    padding: 1.5em 2.25em; /* Balanced padding for better spacing */
+    margin: 1.5em 0; /* Separation from surrounding content */
+    background-color: var(--color-900); /* Subtle background for quotes */
+    border-radius: 0.5em; /* Rounded corners for a softer look */
+}
+
+blockquote::before {
+    content: "“"; /* Cool quote character */
+    font-family: inherit; /* Optional: Choose a fancy font */
+    font-size: 4em; /* Make it stand out */
+    color: var(--accent-500); /* Accent color for the quote */
+    position: absolute; /* Positioning relative to blockquote */
+    top: 0.1em; /* Slightly above the text */
+    left: 0.15em; /* Inside the padding area */
+    line-height: 1; /* Ensures no extra space is added */
+}
+
+blockquote p {
+    margin: 0; /* Ensures inner <p> elements don’t add extra spacing */
+}
+
+/******************************************************************************
+ * LIST STYLES
+ *****************************************************************************/
+
+/**
+ * Base Styles for Lists
+ *
+ * Adds consistent spacing, indentation, and marker styling for unordered and ordered lists.
+ */
+ul, ol {
+    margin: 0 0 2rem 0; /* Space above and below lists */
+    padding-left: 2.5em; /* Indent the list items */
+    color: var(--color-100); /* Light text color for list items */
+    font-size: var(--fs-300); /* Base font size */
+    line-height: 1.7; /* Comfortable spacing between items */
+    list-style: disc outside; /* Default marker style for unordered lists */
+}
+
+/* Custom styling for unordered list markers */
+ul li::marker {
+    color: var(--accent-400); /* Custom accent color for bullets */
+    font-size: 1.2em; /* Slightly larger marker size */
+}
+
+/* Custom styling for ordered list markers */
+ol li::marker {
+    color: var(--accent-400); /* Custom accent color for numbers */
+    font-size: 1.2em; /* Slightly larger marker size */
+}
+
+/* Nested list styles */
+ul ul, ol ol, ul ol, ol ul {
+    margin: 0.5em 0; /* Reduced margin for nested lists */
+    padding-left: 1.5em; /* Maintain indentation for nested lists */
+    font-size: var(--fs-200); /* Slightly smaller font size for nested lists */
+    color: var(--color-200); /* Softer text color for nested items */
+    list-style: circle outside; /* Change marker type for nested unordered lists */
+}
+
+/* Remove Paragraph Margin */
+li p {
+    margin-bottom: 0;
+}
+
+/******************************************************************************
+ * LINK STYLES
+ *****************************************************************************/
+
+/**
+ * Link Styling
+ *
+ * Applies colors, hover effects to inline links and button-like links.
+ */
+a {
+    color: var(--accent-300); /* Primary accent color for links */
+    text-decoration: none; /* Remove underline for a clean look */
+    font-weight: 500; /* Slightly bolder for emphasis */
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* Smooth transitions */
+}
+
+/* Hover state */
+a:hover {
+    color: var(--accent-200); /* Brighter accent color on hover */
+    text-decoration: underline; /* Add underline for visual feedback */
+}
+
+/* Active state (while clicking) */
+a:active {
+    color: var(--accent-700); /* Slightly darker color for active state */
+}
+
+/* Visited state */
+a:visited {
+    color: var(--accent-600); /* Subtle difference for visited links */
+}
+
+/* Button-like links (optional) */
+a.btn-link {
+    display: inline-block; /* Makes the link behave like a button */
+    padding: 0.5em 1em; /* Add padding for a button-like feel */
+    background-color: var(--accent-500); /* Background color for the button */
+    color: var(--color-50); /* Light text color */
+    border-radius: 0.5em; /* Rounded corners */
+    text-align: center; /* Center-align text */
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a.btn-link:hover {
+    background-color: var(--accent-300); /* Brighter background on hover */
+    color: var(--color-900); /* Darker text color */
+}
+
+/******************************************************************************
+ * CODE STYLES
+ *****************************************************************************/
+
+/**
+ * Block Code Styling
+ *
+ * Provides a clean design for multi-line code blocks with line wrapping
+ * and horizontal scrolling for long lines.
+ */
+pre {
+    margin: 2rem 0;
+}
+
+/**
+ * Inline Code Styling
+ *
+ * Styles single-line or inline code snippets for better readability.
+ */
+code {
+    font-family: 'Fira Code', 'Courier New', monospace; /* Monospace font for inline code */
+    font-size: var(--fs-200);
+    background-color: var(--color-700);
+    padding: .25rem;
+}
+
+/******************************************************************************
+ * LINE HEIGHT UTILITIES
+ *****************************************************************************/
+
+/**
+ * Line Height Utilities
+ *
+ * Provides utility classes for line-height values.
+ */
+ $line_heights: ("1": 1, "115": 1.15, "125": 1.25, "150": 1.5, "165": 1.65, "2": 2, "225": 2.25, "25": 2.5);
+
+ @each $key, $value in $line_heights {
+     .lh-#{$key} {
+         line-height: #{$value};
+     }
+ }
+
+/******************************************************************************
+ * LETTER SPACINGS
+ *****************************************************************************/
+
+.ls-0 {
+    letter-spacing: 0px;
+}
+.ls-1 {
+    letter-spacing: -1px;
+}
+.ls-2 {
+    letter-spacing: -2px;
+}
+
+/******************************************************************************
+ * TEXT TRANSFORMATIONS
+ *****************************************************************************/
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+.text-uppercase {
+    text-transform: uppercase;
+}
+.text-lowercase {
+    text-transform: lowercase;
+}
+.text-balance {
+    text-wrap: balance;
+}
+
+/******************************************************************************
+ * TEXT ALIGNMENT
+ *****************************************************************************/
+
+.text-left {
+    text-align: left !important;
+}
+.text-center {
+    text-align: center !important;
+}
+.text-right {
+    text-align: right !important;
+}
+
+@media (max-width: 750px) {
+    .text-left-sm {
+        text-align: left !important;
+    }
+    .text-center-sm {
+        text-align: center !important;
+    }
+    .text-right-sm {
+        text-align: right !important;
+    }
+}
+
+/******************************************************************************
+ * TEXT STYLES
+ *****************************************************************************/
+
+.text-bold {
+    font-weight: bold !important;
+}
+.text-italic {
+    font-style: italic !important;
+}
+.text-line-through {
+    text-decoration: line-through !important;
+}
+
+/******************************************************************************
+ * FONT WEIGHT UTILITIES
+ *****************************************************************************/
+
+/**
+ * Font Weight Utilities
+ *
+ * Provides utility classes for font weights:
+ * - Values: 100, 200, 300, ..., 900
+ */
+@for $i from 1 through 9 {
+    .fw-#{$i * 100},
+    .fw-#{$i * 100} p {
+        font-weight: #{$i * 100} !important;
+    }
+}
